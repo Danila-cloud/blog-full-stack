@@ -7,6 +7,7 @@ import { validationResult } from "express-validator";
 
 import { registerValidation } from "./validations/auth.js";
 import UserModel from "./models/User.js";
+import checkAuth from "./utils/checkAuth.js";
 
 const config = dotenv.config();
 
@@ -23,6 +24,39 @@ app.get("/", (req, res) => {
   res.send("hello world");
 });
 
+app.get("/my-profile", checkAuth, async (req, res) => {
+  try {
+    const user = await UserModel.findById(req.userId);
+
+    if (!user) {
+      return res.status(404).json({
+        message: "User not found",
+      });
+    }
+
+    const token = jwt.sign(
+      {
+        _id: user._id,
+      },
+      "skubidupapa",
+      {
+        expiresIn: "30d",
+      }
+    );
+
+    res.json({
+      ...user,
+      token,
+    });
+  } catch (err) {
+    console.log(err);
+
+    return res.status(500).json({
+      message: "Not access",
+    });
+  }
+});
+
 app.post("/login", async (req, res) => {
   try {
     const user = await UserModel.findOne({ email: req.body.email });
@@ -35,7 +69,7 @@ app.post("/login", async (req, res) => {
 
     const isValidPass = await bcrypt.compare(
       req.body.password,
-      user._doc.passwordHash,
+      user._doc.passwordHash
     );
 
     if (!isValidPass) {
