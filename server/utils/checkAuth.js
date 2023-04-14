@@ -8,9 +8,10 @@ export default (req, res, next) => {
       const decoded = jwt.verify(token, "skubidupapa");
 
       req.userId = decoded._id;
-        
+
       next();
     } catch (err) {
+      console.log(err);
       res.status(403).json({
         message: "Not access",
       });
@@ -21,3 +22,5 @@ export default (req, res, next) => {
     });
   }
 };
+
+
