@@ -1,1 +1,1 @@
-export { default as emptyAvatar } from './empty-avatar.png'
+export { default as EmptyAvatar } from './empty-avatar.png'
