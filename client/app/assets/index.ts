@@ -1,0 +1,1 @@
+export { default as emptyAvatar } from './empty-avatar.png'
