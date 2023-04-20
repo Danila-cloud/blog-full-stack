@@ -16,4 +16,27 @@ module.exports = {
     v2_routeConvention: true,
     unstable_tailwind: true,
   },
+
+  serverDependenciesToBundle: [
+    /^rehype.*/,
+    /^remark.*/,
+    /^unified.*/,
+    /^unist.*/,
+    /^hast.*/,
+    /^bail.*/,
+    /^trough.*/,
+    /^mdast.*/,
+    /^micromark.*/,
+    /^decode.*/,
+    /^character.*/,
+    /^property.*/,
+    /^space.*/,
+    /^comma.*/,
+    /^react-markdown$/,
+    /^vfile.*/,
+    /^ccount*/,
+    /^markdown-table*/,
+    /^axios*/,
+]
+
 };

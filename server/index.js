@@ -13,6 +13,8 @@ import { create, getAll, getOne, remove, update } from "./controllers/PostContro
 
 import handleErrors from "./utils/handleErrors.js";
 
+import cors from "cors";
+
 const config = dotenv.config();
 
 mongoose
@@ -23,6 +25,8 @@ mongoose
 const app = express();
 
 app.use(express.json());
+app.use(cors())
+
 app.use("/uploads", express.static("uploads"));
 
 const storage = multer.diskStorage({
