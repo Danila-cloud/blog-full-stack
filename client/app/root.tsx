@@ -41,12 +41,6 @@ export const links: LinksFunction = () => {
       href: '/favicons/android-chrome-192x192.png',
     },
     {
-      rel: 'icon',
-      type: 'image/png',
-      sizes: '256x256',
-      href: '/favicons/android-chrome-256x256.png',
-    },
-    {
       rel: 'apple-touch-icon',
       type: 'image/png',
       sizes: '180x180',

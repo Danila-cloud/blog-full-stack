@@ -16,11 +16,9 @@ export default function Index() {
   const dispatch = useDispatch<ThunkDispatch<any, any, any>>();
 
   // @ts-ignore
-  const { posts, tags } = useSelector((state) => state.posts);
+  const { posts } = useSelector((state) => state.posts);
 
   const [isPostsLoading, setIsPostLoading] = useState(true);
-
-  console.log(isPostsLoading);
 
   useEffect(() => {
     dispatch(fetchPosts());
@@ -29,8 +27,6 @@ export default function Index() {
   useEffect(() => {
     if (posts.status === "loaded") setIsPostLoading(false);
   });
-
-  console.log(posts.items);
 
   return (
     <div className="max-w-[720px] flex flex-row mx-auto mt-[56px] py-12 py-auto">
