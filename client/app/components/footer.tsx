@@ -1,15 +1,18 @@
 import { Link } from "@remix-run/react";
+import { Logo } from "~/assets";
 
 export default function Footer() {
   return (
     <footer className="bg-neutral-100 shadow">
       <div className="w-full mx-auto p-4 md:py-8">
         <div className="sm:flex sm:items-center sm:justify-between">
-          <div className="text-2xl">
-            <Link to="/">
-              <h1>BLOG.sol</h1>
-            </Link>
-          </div>
+          <Link to="/">
+            <div className="text-2xl flex flex-row">
+              <img src={Logo} className="h-14 mt-auto mr-3" alt="Blog.sol Logo" />
+
+              <h1 className="my-auto">BLOG.sol</h1>
+            </div>
+          </Link>
           <ul className="flex flex-wrap items-center mb-6 text-sm font-medium text-gray-500 sm:mb-0">
             <li>
               <a href="/register" className="mr-4 hover:underline md:mr-6 ">

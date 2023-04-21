@@ -34,7 +34,7 @@ export default function Index() {
 
   return (
     <div className="max-w-[720px] flex flex-row mx-auto mt-[56px] py-12 py-auto">
-      <div className="grid grid-cols-2 gap-2">
+      <div className="grid grid-cols-2 gap-2 mx-auto">
         {isPostsLoading ? (
           <div className="w-full h-screen">
             <Loading />
