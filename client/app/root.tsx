@@ -12,6 +12,8 @@ import Navigation from "./components/navigation";
 
 import stylesheet from "~/tailwind.css";
 import Footer from "./components/footer";
+import { Provider } from "react-redux";
+import store from "./redux/store";
 
 export const links: LinksFunction = () => [
   { rel: "stylesheet", href: stylesheet },
@@ -27,12 +29,14 @@ export default function App() {
         <Links />
       </head>
       <body>
-        <Navigation />
-        <Outlet />
-        <ScrollRestoration />
-        <Scripts />
-        <LiveReload />
-        <Footer />
+        <Provider store={store}>
+          <Navigation />
+          <Outlet />
+          <ScrollRestoration />
+          <Scripts />
+          <LiveReload />
+          <Footer />
+        </Provider>
       </body>
     </html>
   );

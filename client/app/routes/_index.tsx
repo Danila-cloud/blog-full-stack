@@ -1,51 +1,54 @@
 import type { V2_MetaFunction } from "@remix-run/react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { EmptyImage } from "~/assets";
+import { useDispatch, useSelector } from "react-redux";
 import PostCard from "~/components/post-card";
 import instance from "~/axios";
+import { fetchPosts } from "~/redux/slices/posts";
+import { ThunkDispatch } from "@reduxjs/toolkit";
+import Loading from "~/components/loading";
 
 export const meta: V2_MetaFunction = () => {
   return [{ title: "Home" }];
 };
 
 export default function Index() {
+  const dispatch = useDispatch<ThunkDispatch<any, any, any>>();
+
+  // @ts-ignore
+  const { posts, tags } = useSelector((state) => state.posts);
+
+  const [isPostsLoading, setIsPostLoading] = useState(true);
+
+  console.log(isPostsLoading);
+
   useEffect(() => {
-    instance.get("/posts");
+    dispatch(fetchPosts());
   }, []);
+
+  useEffect(() => {
+    if (posts.status === "loaded") setIsPostLoading(false);
+  });
+
+  console.log(posts.items);
 
   return (
     <div className="max-w-[720px] flex flex-row mx-auto mt-[56px] py-12 py-auto">
       <div className="grid grid-cols-2 gap-2">
-        <PostCard
-          image={EmptyImage}
-          title="Noteworthy technology acquisitions 2021"
-          description="Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order."
-        />
-        <PostCard
-          image={EmptyImage}
-          title="Noteworthy technology acquisitions 2021"
-          description="Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order."
-        />
-        <PostCard
-          image={EmptyImage}
-          title="Noteworthy technology acquisitions 2021"
-          description="Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order."
-        />
-        <PostCard
-          image={EmptyImage}
-          title="Noteworthy technology acquisitions 2021"
-          description="Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order."
-        />
-        <PostCard
-          image={EmptyImage}
-          title="Noteworthy technology acquisitions 2021"
-          description="Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order."
-        />
-        <PostCard
-          image={EmptyImage}
-          title="Noteworthy technology acquisitions 2021"
-          description="Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order."
-        />
+        {isPostsLoading ? (
+          <div className="w-full h-screen">
+            <Loading />
+          </div>
+        ) : (
+          // @ts-ignore
+          posts.items.map((obj) => (
+            <PostCard
+              key={obj.title}
+              title={obj.title}
+              description={obj.text}
+            />
+          ))
+        )}
       </div>
     </div>
   );

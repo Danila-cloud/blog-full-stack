@@ -13,10 +13,10 @@ import store from "./redux/store";
 startTransition(() => {
   hydrateRoot(
     document,
-    <StrictMode>
+    <>
       <Provider store={store}>
         <RemixBrowser />
       </Provider>
-    </StrictMode>
+    </>
   );
 });
