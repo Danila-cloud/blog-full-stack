@@ -1,9 +1,19 @@
+import { useDispatch, useSelector } from "react-redux";
+import { logout, selectIsAuth } from "~/redux/slices/auth";
 import { Button } from "@mui/material";
 import { Link } from "@remix-run/react";
 import { Logo } from "~/assets";
+import { useEffect } from "react";
+import { ThunkDispatch } from "@reduxjs/toolkit";
 
 export default function Navigation() {
-  const isAuth = false;
+  const dispatch = useDispatch<ThunkDispatch<any, any, any>>();
+
+  const isAuth = useSelector(selectIsAuth);
+
+  const onLogout = () => {
+    dispatch(logout());
+  };
 
   return (
     <div className="fixed top-0 left-0 z-[999] flex w-full flex-row py-auto h-[56px] gap-x-6 gap-y-2 bg-neutral-100 font-semibold text-sky-800">
@@ -20,7 +30,7 @@ export default function Navigation() {
             Create a new post
           </Button>
 
-          <Button variant="outlined" href="#">
+          <Button variant="outlined" onClick={onLogout}>
             Logout
           </Button>
         </div>

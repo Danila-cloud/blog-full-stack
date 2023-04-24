@@ -7,6 +7,8 @@ import instance from "~/axios";
 import { fetchPosts } from "~/redux/slices/posts";
 import { ThunkDispatch } from "@reduxjs/toolkit";
 import Loading from "~/components/loading";
+import { selectIsAuth } from "~/redux/slices/auth";
+import toast, { Toaster } from "react-hot-toast";
 
 export const meta: V2_MetaFunction = () => {
   return [{ title: "Home" }];
@@ -16,21 +18,23 @@ export default function Index() {
   const dispatch = useDispatch<ThunkDispatch<any, any, any>>();
 
   // @ts-ignore
-  const { posts, tags } = useSelector((state) => state.posts);
+  const { posts } = useSelector((state) => state.posts);
 
   const [isPostsLoading, setIsPostLoading] = useState(true);
 
-  console.log(isPostsLoading);
+  const isAuth = useSelector(selectIsAuth);
 
   useEffect(() => {
     dispatch(fetchPosts());
+
+    if (isAuth) {
+      toast.success("You are successfully login in system!");
+    }
   }, []);
 
   useEffect(() => {
     if (posts.status === "loaded") setIsPostLoading(false);
   });
-
-  console.log(posts.items);
 
   return (
     <div className="max-w-[720px] flex flex-row mx-auto mt-[56px] py-12 py-auto">
@@ -50,6 +54,8 @@ export default function Index() {
           ))
         )}
       </div>
+
+      <Toaster />
     </div>
   );
 }
