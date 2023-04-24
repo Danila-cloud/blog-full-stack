@@ -1,12 +1,10 @@
 import type { V2_MetaFunction } from "@remix-run/react";
-import { redirect } from "@remix-run/cloudflare";
-import { Navigate } from "react-router-dom";
 import { useNavigate } from "@remix-run/react";
 import { Logo } from "~/assets";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { ThunkDispatch } from "@reduxjs/toolkit";
-import { fetchUserData, selectIsAuth } from "~/redux/slices/auth";
+import { fetchAuth, selectIsAuth } from "~/redux/slices/auth";
 
 export const meta: V2_MetaFunction = () => {
   return [{ title: "Login" }];
@@ -28,7 +26,7 @@ export default function Login() {
   });
 
   const onSubmit = async (values: any) => {
-    const data = await dispatch(fetchUserData(values));
+    const data = await dispatch(fetchAuth(values));
 
     // console.log(data);
 

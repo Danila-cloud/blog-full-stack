@@ -1,43 +1,40 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import instance from "~/axios";
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import instance from '~/axios';
 
-export const fetchUserData = createAsyncThunk(
-  "auth/fetchUserData",
-  async (params: any) => {
-    const { data } = await instance.post("/login", params);
-
-    return data;
-  }
-);
+export const fetchAuth = createAsyncThunk('auth/fetchAuth', async (params: any) => {
+  const { data } = await instance.post('/login', params);
+  
+  return data;
+});
 
 const initialState = {
   data: null,
-  status: "loading",
+  status: 'loading',
 };
 
 const authSlice = createSlice({
-  name: "auth",
+  name: 'auth',
   initialState,
   reducers: {},
   extraReducers: {
     // @ts-ignore
-    [fetchUserData.pending]: (state: any) => {
-      state.items = [];
-      state.status = "loading";
+    [fetchAuth.pending]: (state) => {
+      state.status = 'loading';
+      state.data = null;
     },
     // @ts-ignore
-    [fetchUserData.fulfilled]: (state: any, action: any) => {
-      state.items = action.payload;
-      state.status = "loaded";
+    [fetchAuth.fulfilled]: (state, action) => {
+      state.status = 'loaded';
+      state.data = action.payload;
     },
     // @ts-ignore
-    [fetchUserData.rejected]: (state: any) => {
-      state.items = [];
-      state.status = "error";
+    [fetchAuth.rejected]: (state) => {
+      state.status = 'error';
+      state.data = null;
     },
   },
 });
 
-export const selectIsAuth = (state: any) => Boolean(state.data);
+export const selectIsAuth = (state: any) => Boolean(state.auth.data);
 
 export const authReducer = authSlice.reducer;

@@ -1,9 +1,12 @@
+import { useSelector } from "react-redux";
+import { selectIsAuth } from "~/redux/slices/auth";
 import { Button } from "@mui/material";
 import { Link } from "@remix-run/react";
 import { Logo } from "~/assets";
+import { useEffect } from "react";
 
 export default function Navigation() {
-  const isAuth = false;
+  const isAuth = useSelector(selectIsAuth);
 
   return (
     <div className="fixed top-0 left-0 z-[999] flex w-full flex-row py-auto h-[56px] gap-x-6 gap-y-2 bg-neutral-100 font-semibold text-sky-800">
