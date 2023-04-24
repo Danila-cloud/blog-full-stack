@@ -8,7 +8,7 @@ import { ThunkDispatch } from "@reduxjs/toolkit";
 import { fetchAuth, fetchRegister, selectIsAuth } from "~/redux/slices/auth";
 
 export const meta: V2_MetaFunction = () => {
-  return [{ title: "Register" }];
+  return [{ title: "Register | Blog.sol" }];
 };
 
 export default function Register() {

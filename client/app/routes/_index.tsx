@@ -11,7 +11,7 @@ import { selectIsAuth } from "~/redux/slices/auth";
 import toast, { Toaster } from "react-hot-toast";
 
 export const meta: V2_MetaFunction = () => {
-  return [{ title: "Home" }];
+  return [{ title: "Home | Blog.sol" }];
 };
 
 export default function Index() {

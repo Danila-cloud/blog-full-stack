@@ -7,7 +7,7 @@ import { ThunkDispatch } from "@reduxjs/toolkit";
 import { fetchAuth, selectIsAuth } from "~/redux/slices/auth";
 
 export const meta: V2_MetaFunction = () => {
-  return [{ title: "Login" }];
+  return [{ title: "Login | Blog.sol" }];
 };
 
 export default function Login() {
