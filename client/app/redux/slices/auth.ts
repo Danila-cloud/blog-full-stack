@@ -10,6 +10,12 @@ export const fetchAuth = createAsyncThunk(
   }
 );
 
+export const fetchLogin = createAsyncThunk("auth/fetchAuthMe", async () => {
+  const { data } = await instance.get("/my-profile");
+
+  return data;
+});
+
 const initialState = {
   data: null,
   status: "loading",
@@ -21,6 +27,8 @@ const authSlice = createSlice({
   reducers: {
     logout: (state: any) => {
       state.data = null;
+
+      window.localStorage.removeItem("token");
     },
   },
   extraReducers: {
@@ -36,6 +44,21 @@ const authSlice = createSlice({
     },
     // @ts-ignore
     [fetchAuth.rejected]: (state) => {
+      state.status = "error";
+      state.data = null;
+    },
+    // @ts-ignore
+    [fetchLogin.pending]: (state) => {
+      state.status = "loading";
+      state.data = null;
+    },
+    // @ts-ignore
+    [fetchLogin.fulfilled]: (state, action) => {
+      state.status = "loaded";
+      state.data = action.payload;
+    },
+    // @ts-ignore
+    [fetchLogin.rejected]: (state) => {
       state.status = "error";
       state.data = null;
     },

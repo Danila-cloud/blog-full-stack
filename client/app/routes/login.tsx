@@ -13,7 +13,7 @@ export const meta: V2_MetaFunction = () => {
 export default function Login() {
   const dispatch = useDispatch<ThunkDispatch<any, any, any>>();
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const isAuth = useSelector(selectIsAuth);
 
@@ -32,10 +32,12 @@ export default function Login() {
 
     if (data.payload) {
       console.log(true);
-      navigate('/')
+      navigate("/");
     } else {
-      console.log(false);
+      return;
     }
+
+    window.localStorage.setItem("token", data.payload.token);
 
     return data;
   };
