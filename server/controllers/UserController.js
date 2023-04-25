@@ -139,3 +139,22 @@ export const changeEmail = async (req, res) => {
     });
   }
 };
+
+export const changeName = async (req, res) => {
+  try {
+    await UserModel.updateOne(
+      { _id: req.params.id },
+      { fullName: req.body.name }
+    );
+
+    res.json({
+      success: true,
+    });
+  } catch (err) {
+    console.log(err);
+
+    return res.status(500).json({
+      message: "Not access",
+    });
+  }
+};

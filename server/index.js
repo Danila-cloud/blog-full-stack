@@ -13,6 +13,7 @@ import {
   login,
   getMyProfile,
   changeEmail,
+  changeName,
 } from "./controllers/UserController.js";
 import {
   create,
@@ -70,6 +71,7 @@ app.post("/register", registerValidation, handleErrors, register);
 
 //***********************User */
 app.patch("/change-email/:id", checkAuth, changeEmail);
+app.patch("/change-name/:id", checkAuth, changeName);
 
 //*********************** Post */
 app.get("/posts/:id", getOne);

@@ -28,7 +28,22 @@ export const fetchRegister = createAsyncThunk(
 export const updateEmail = createAsyncThunk(
   "updateEmail",
   async (params: any) => {
-    const { data } = await instance.patch(`/change-email/${window.localStorage.getItem('id')}`, params);
+    const { data } = await instance.patch(
+      `/change-email/${window.localStorage.getItem("id")}`,
+      params
+    );
+
+    return data;
+  }
+);
+
+export const updateName = createAsyncThunk(
+  "updateName",
+  async (params: any) => {
+    const { data } = await instance.patch(
+      `/change-name/${window.localStorage.getItem("id")}`,
+      params
+    );
 
     return data;
   }
@@ -110,6 +125,21 @@ const authSlice = createSlice({
     },
     // @ts-ignore
     [updateEmail.rejected]: (state) => {
+      state.status = "error";
+      state.data = null;
+    },
+    // @ts-ignore
+    [updateName.pending]: (state) => {
+      state.status = "loading";
+      state.data = null;
+    },
+    // @ts-ignore
+    [updateName.fulfilled]: (state, action) => {
+      state.status = "loaded";
+      state.data = action.payload;
+    },
+    // @ts-ignore
+    [updateName.rejected]: (state) => {
       state.status = "error";
       state.data = null;
     },

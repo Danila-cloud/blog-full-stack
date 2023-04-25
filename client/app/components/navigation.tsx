@@ -54,7 +54,7 @@ export default function Navigation() {
               <a href="/my-posts">My Posts</a>
             </Dropdown.Item>
             <Dropdown.Item>
-              <a href="/my-posts">Change name</a>
+              <a href="/change-name">Change name</a>
             </Dropdown.Item>
             <Dropdown.Item>
               <a href="/change-email">Change email</a>
