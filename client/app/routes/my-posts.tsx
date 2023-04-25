@@ -1,6 +1,6 @@
 import type { V2_MetaFunction } from "@remix-run/react";
 import { useEffect, useState } from "react";
-import { EmptyImage } from "~/assets";
+import { EmptyImage, EmptyPostImage } from "~/assets";
 import { useDispatch, useSelector } from "react-redux";
 import PostCard from "~/components/post-card";
 import instance from "~/axios";
@@ -11,7 +11,7 @@ import { selectIsAuth } from "~/redux/slices/user";
 import toast, { Toaster } from "react-hot-toast";
 
 export const meta: V2_MetaFunction = () => {
-  return [{ title: "Home | Blog.sol" }];
+  return [{ title: "My Posts | Blog.sol" }];
 };
 
 export default function Index() {
@@ -41,11 +41,12 @@ export default function Index() {
   });
 
   return (
-    <div className="max-w-[720px] flex flex-col gap-6 mx-auto mt-[56px] py-12 py-auto">
-      <h1 className="mb-4 text-4xl font-extrabold leading-none tracking-tight md:text-5xl lg:text-6xl text-sky-800">
+    <div className="max-w-[720px] gap-8 flex flex-col mx-auto mt-[56px] py-12">
+      <h2 className="text-4xl mx-auto font-extrabold leading-none tracking-tight md:text-5xl lg:text-5xl text-sky-800">
         Your posts
-      </h1>
-      <div>
+      </h2>
+
+      <div className="mx-auto">
         {posts.items.length !== 0 ? (
           <div className="grid grid-cols-2 gap-2 mx-auto">
             {isPostsLoading ? (
@@ -56,7 +57,7 @@ export default function Index() {
               // @ts-ignore
               posts.items.map((obj) => (
                 <PostCard
-                  image={EmptyImage}
+                  image={EmptyPostImage}
                   key={obj.title}
                   title={obj.title}
                   description={obj.text}

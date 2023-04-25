@@ -13,7 +13,7 @@ import {
 import toast, { Toaster } from "react-hot-toast";
 
 export const meta: V2_MetaFunction = () => {
-  return [{ title: "Login | Blog.sol" }];
+  return [{ title: "Change name | Blog.sol" }];
 };
 
 export default function ChangeEmail() {

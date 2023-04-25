@@ -8,7 +8,7 @@ import { fetchAuth, selectIsAuth, updateEmail } from "~/redux/slices/user";
 import toast, { Toaster } from "react-hot-toast";
 
 export const meta: V2_MetaFunction = () => {
-  return [{ title: "Login | Blog.sol" }];
+  return [{ title: "Change email | Blog.sol" }];
 };
 
 export default function ChangeEmail() {
