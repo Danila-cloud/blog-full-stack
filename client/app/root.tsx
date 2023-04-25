@@ -21,6 +21,7 @@ import { ReactNode, useEffect } from "react";
 
 export const links: LinksFunction = () => {
   return [
+    // { rel: "stylesheet", href: CSS },
     { rel: "stylesheet", href: stylesheet },
     {
       rel: "manifest",

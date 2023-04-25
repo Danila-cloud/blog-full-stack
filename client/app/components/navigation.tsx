@@ -2,9 +2,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { logout, selectIsAuth } from "~/redux/slices/auth";
 import { Button } from "@mui/material";
 import { Link } from "@remix-run/react";
-import { Logo } from "~/assets";
+import { EmptyAvatar, Logo } from "~/assets";
 import { useEffect } from "react";
 import { ThunkDispatch } from "@reduxjs/toolkit";
+import { Avatar, Dropdown } from "flowbite-react";
 
 export default function Navigation() {
   const dispatch = useDispatch<ThunkDispatch<any, any, any>>();
@@ -25,14 +26,34 @@ export default function Navigation() {
         </div>
       </Link>
       {isAuth ? (
-        <div className="flex flex-row gap-2 my-auto ml-auto mr-24 relative right">
+        <div className="flex flex-row gap-4 my-auto ml-auto mr-24 relative right">
           <Button variant="contained" href="#">
             Create a new post
           </Button>
 
-          <Button variant="outlined" onClick={onLogout}>
+          {/* <Button variant="outlined" onClick={onLogout}>
             Logout
-          </Button>
+          </Button> */}
+
+          <Dropdown
+            label={
+              <Avatar alt="User settings" img={EmptyAvatar} rounded={true} />
+            }
+            arrowIcon={false}
+            inline={true}
+          >
+            <Dropdown.Header>
+              <span className="block text-sm">{window.localStorage.getItem('name')}</span>
+              <span className="block truncate text-sm font-medium">
+              {window.localStorage.getItem('email')}
+              </span>
+            </Dropdown.Header>
+            <Dropdown.Item>Dashboard</Dropdown.Item>
+            <Dropdown.Item>Settings</Dropdown.Item>
+            <Dropdown.Item>Earnings</Dropdown.Item>
+            <Dropdown.Divider />
+            <Dropdown.Item onClick={onLogout}>Sign out</Dropdown.Item>
+          </Dropdown>
         </div>
       ) : (
         <div className="flex flex-row gap-2 my-auto ml-auto mr-24 relative right">

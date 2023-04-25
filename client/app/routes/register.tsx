@@ -38,6 +38,8 @@ export default function Register() {
     }
 
     window.localStorage.setItem("token", data.payload.token);
+    window.localStorage.setItem("email", data.payload._doc.email);
+    window.localStorage.setItem("name", data.payload._doc.fullName);
 
     return data;
   };

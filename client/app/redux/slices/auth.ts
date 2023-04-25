@@ -38,6 +38,8 @@ const authSlice = createSlice({
       state.data = null;
 
       window.localStorage.removeItem("token");
+      window.localStorage.removeItem("name");
+      window.localStorage.removeItem("email");
     },
   },
   extraReducers: {
