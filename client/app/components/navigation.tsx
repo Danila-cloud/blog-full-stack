@@ -3,8 +3,7 @@ import { logout, selectIsAuth } from "~/redux/slices/user";
 import { Button } from "@mui/material";
 import { Link } from "@remix-run/react";
 import { EmptyAvatar, Logo } from "~/assets";
-import { useEffect } from "react";
-import { ThunkDispatch } from "@reduxjs/toolkit";
+import type { ThunkDispatch } from "@reduxjs/toolkit";
 import { Avatar, Dropdown } from "flowbite-react";
 
 export default function Navigation() {

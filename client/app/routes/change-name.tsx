@@ -2,12 +2,9 @@ import type { V2_MetaFunction } from "@remix-run/react";
 import { useNavigate } from "@remix-run/react";
 import { Logo } from "~/assets";
 import { useForm } from "react-hook-form";
-import { useDispatch, useSelector } from "react-redux";
-import { ThunkDispatch } from "@reduxjs/toolkit";
+import { useDispatch } from "react-redux";
+import type { ThunkDispatch } from "@reduxjs/toolkit";
 import {
-  fetchAuth,
-  selectIsAuth,
-  updateEmail,
   updateName,
 } from "~/redux/slices/user";
 import toast, { Toaster } from "react-hot-toast";
@@ -20,8 +17,6 @@ export default function ChangeEmail() {
   const dispatch = useDispatch<ThunkDispatch<any, any, any>>();
 
   const navigate = useNavigate();
-
-  const isAuth = useSelector(selectIsAuth);
 
   const { register, handleSubmit } = useForm({
     defaultValues: {

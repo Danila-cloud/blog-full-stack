@@ -1,13 +1,11 @@
 import type { V2_MetaFunction } from "@remix-run/react";
 import { useEffect, useState } from "react";
-import { EmptyImage, EmptyPostImage } from "~/assets";
+import { EmptyPostImage } from "~/assets";
 import { useDispatch, useSelector } from "react-redux";
 import PostCard from "~/components/post-card";
-import instance from "~/axios";
-import { fetchMyPosts, fetchPosts } from "~/redux/slices/posts";
-import { ThunkDispatch } from "@reduxjs/toolkit";
+import { fetchMyPosts } from "~/redux/slices/posts";
+import type { ThunkDispatch } from "@reduxjs/toolkit";
 import Loading from "~/components/loading";
-import { selectIsAuth } from "~/redux/slices/user";
 import toast, { Toaster } from "react-hot-toast";
 
 export const meta: V2_MetaFunction = () => {

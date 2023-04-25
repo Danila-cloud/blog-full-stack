@@ -1,5 +1,3 @@
-import { EmptyImage } from "~/assets";
-
 interface IPostCard {
   image?: string;
   title: string;
