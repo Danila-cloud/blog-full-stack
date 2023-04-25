@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { logout, selectIsAuth } from "~/redux/slices/auth";
+import { logout, selectIsAuth } from "~/redux/slices/user";
 import { Button } from "@mui/material";
 import { Link } from "@remix-run/react";
 import { EmptyAvatar, Logo } from "~/assets";
@@ -53,8 +53,12 @@ export default function Navigation() {
             <Dropdown.Item>
               <a href="/my-posts">My Posts</a>
             </Dropdown.Item>
-            <Dropdown.Item>Change name</Dropdown.Item>
-            <Dropdown.Item>Change email</Dropdown.Item>
+            <Dropdown.Item>
+              <a href="/my-posts">Change name</a>
+            </Dropdown.Item>
+            <Dropdown.Item>
+              <a href="/change-email">Change email</a>
+            </Dropdown.Item>
             <Dropdown.Divider />
             <Dropdown.Item onClick={onLogout}>Sign out</Dropdown.Item>
           </Dropdown>

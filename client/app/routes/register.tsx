@@ -5,7 +5,7 @@ import { Logo } from "~/assets";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { ThunkDispatch } from "@reduxjs/toolkit";
-import { fetchAuth, fetchRegister, selectIsAuth } from "~/redux/slices/auth";
+import { fetchAuth, fetchRegister, selectIsAuth } from "~/redux/slices/user";
 
 export const meta: V2_MetaFunction = () => {
   return [{ title: "Register | Blog.sol" }];

@@ -87,6 +87,7 @@ export const login = async (req, res) => {
     });
   }
 };
+
 export const getMyProfile = async (req, res) => {
   try {
     const user = await UserModel.findById(req.userId);
@@ -110,6 +111,25 @@ export const getMyProfile = async (req, res) => {
     res.json({
       ...user,
       token,
+    });
+  } catch (err) {
+    console.log(err);
+
+    return res.status(500).json({
+      message: "Not access",
+    });
+  }
+};
+
+export const changeEmail = async (req, res) => {
+  try {
+    await UserModel.updateOne(
+      { _id: req.params.id },
+      { email: req.body.email }
+    );
+
+    res.json({
+      success: true,
     });
   } catch (err) {
     console.log(err);

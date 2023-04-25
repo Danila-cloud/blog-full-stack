@@ -7,7 +7,7 @@ import instance from "~/axios";
 import { fetchPosts } from "~/redux/slices/posts";
 import { ThunkDispatch } from "@reduxjs/toolkit";
 import Loading from "~/components/loading";
-import { selectIsAuth } from "~/redux/slices/auth";
+import { selectIsAuth } from "~/redux/slices/user";
 import toast, { Toaster } from "react-hot-toast";
 
 export const meta: V2_MetaFunction = () => {

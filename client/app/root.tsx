@@ -16,7 +16,7 @@ import Footer from "./components/footer";
 import { Provider, useDispatch, useSelector } from "react-redux";
 import store from "./redux/store";
 import { ThunkDispatch } from "@reduxjs/toolkit";
-import { fetchLogin, selectIsAuth } from "./redux/slices/auth";
+import { fetchLogin, selectIsAuth } from "./redux/slices/user";
 import { ReactNode, useEffect } from "react";
 
 export const links: LinksFunction = () => {

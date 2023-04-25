@@ -8,8 +8,20 @@ import {
 import checkAuth from "./utils/checkAuth.js";
 import multer from "multer";
 
-import { register, login, getMyProfile } from "./controllers/UserController.js";
-import { create, getAll, getOne, remove, update, getMyPosts } from "./controllers/PostController.js";
+import {
+  register,
+  login,
+  getMyProfile,
+  changeEmail,
+} from "./controllers/UserController.js";
+import {
+  create,
+  getAll,
+  getOne,
+  remove,
+  update,
+  getMyPosts,
+} from "./controllers/PostController.js";
 
 import handleErrors from "./utils/handleErrors.js";
 
@@ -25,7 +37,7 @@ mongoose
 const app = express();
 
 app.use(express.json());
-app.use(cors())
+app.use(cors());
 
 app.use("/uploads", express.static("uploads"));
 
@@ -55,6 +67,9 @@ app.get("/my-profile", checkAuth, getMyProfile);
 //*********************** Auth */
 app.post("/login", handleErrors, login);
 app.post("/register", registerValidation, handleErrors, register);
+
+//***********************User */
+app.patch("/change-email/:id", checkAuth, changeEmail);
 
 //*********************** Post */
 app.get("/posts/:id", getOne);
