@@ -56,6 +56,7 @@ export default function Index() {
               // @ts-ignore
               posts.items.map((obj) => (
                 <PostCard
+                  image={EmptyImage}
                   key={obj.title}
                   title={obj.title}
                   description={obj.text}

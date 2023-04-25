@@ -1,6 +1,6 @@
 import type { V2_MetaFunction } from "@remix-run/react";
 import { useEffect, useState } from "react";
-import { EmptyImage } from "~/assets";
+import { EmptyPostImage } from "~/assets";
 import { useDispatch, useSelector } from "react-redux";
 import PostCard from "~/components/post-card";
 import instance from "~/axios";
@@ -47,6 +47,7 @@ export default function Index() {
           // @ts-ignore
           posts.items.map((obj) => (
             <PostCard
+              image={EmptyPostImage}
               key={obj.title}
               title={obj.title}
               description={obj.text}
