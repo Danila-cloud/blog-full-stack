@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { ThunkDispatch } from "@reduxjs/toolkit";
 import { fetchAuth, selectIsAuth } from "~/redux/slices/auth";
+import toast, { Toaster } from "react-hot-toast";
 
 export const meta: V2_MetaFunction = () => {
   return [{ title: "Login | Blog.sol" }];
@@ -31,17 +32,19 @@ export default function Login() {
     // console.log(data);
 
     if (data.payload) {
-      console.log(true);
       navigate("/");
     } else {
+      toast.error("Email or password is incorrect, please try again!");
+
       return;
     }
 
-    console.log(data.payload)
+    console.log(data.payload);
 
     window.localStorage.setItem("token", data.payload.token);
     window.localStorage.setItem("email", data.payload._doc.email);
     window.localStorage.setItem("name", data.payload._doc.fullName);
+    window.localStorage.setItem("id", data.payload._doc._id);
 
     return data;
   };
@@ -114,6 +117,8 @@ export default function Login() {
           </form>
         </div>
       </div>
+
+      <Toaster />
     </div>
   );
 }

@@ -9,7 +9,7 @@ import checkAuth from "./utils/checkAuth.js";
 import multer from "multer";
 
 import { register, login, getMyProfile } from "./controllers/UserController.js";
-import { create, getAll, getOne, remove, update } from "./controllers/PostController.js";
+import { create, getAll, getOne, remove, update, getMyPosts } from "./controllers/PostController.js";
 
 import handleErrors from "./utils/handleErrors.js";
 
@@ -62,6 +62,8 @@ app.get("/posts", getAll);
 app.post("/posts", checkAuth, postCreateValidation, create);
 app.delete("/posts/:id", checkAuth, remove);
 app.patch("/posts/:id", checkAuth, postCreateValidation, update);
+
+app.get("/my-posts", checkAuth, getMyPosts);
 
 app.listen(3001, (err) => {
   if (err) return console.log(err);

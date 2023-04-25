@@ -43,14 +43,18 @@ export default function Navigation() {
             inline={true}
           >
             <Dropdown.Header>
-              <span className="block text-sm">{window.localStorage.getItem('name')}</span>
+              <span className="block text-sm">
+                {window.localStorage.getItem("name")}
+              </span>
               <span className="block truncate text-sm font-medium">
-              {window.localStorage.getItem('email')}
+                {window.localStorage.getItem("email")}
               </span>
             </Dropdown.Header>
-            <Dropdown.Item>Dashboard</Dropdown.Item>
-            <Dropdown.Item>Settings</Dropdown.Item>
-            <Dropdown.Item>Earnings</Dropdown.Item>
+            <Dropdown.Item>
+              <a href="/my-posts">My Posts</a>
+            </Dropdown.Item>
+            <Dropdown.Item>Change name</Dropdown.Item>
+            <Dropdown.Item>Change email</Dropdown.Item>
             <Dropdown.Divider />
             <Dropdown.Item onClick={onLogout}>Sign out</Dropdown.Item>
           </Dropdown>

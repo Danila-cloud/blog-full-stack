@@ -40,6 +40,7 @@ const authSlice = createSlice({
       window.localStorage.removeItem("token");
       window.localStorage.removeItem("name");
       window.localStorage.removeItem("email");
+      window.localStorage.removeItem("id");
     },
   },
   extraReducers: {

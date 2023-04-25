@@ -40,6 +40,7 @@ export default function Register() {
     window.localStorage.setItem("token", data.payload.token);
     window.localStorage.setItem("email", data.payload._doc.email);
     window.localStorage.setItem("name", data.payload._doc.fullName);
+    window.localStorage.setItem("id", data.payload._doc._id);
 
     return data;
   };
