@@ -1,5 +1,3 @@
-import { EmptyImage } from "~/assets";
-
 interface IPostCard {
   image?: string;
   title: string;
@@ -8,9 +6,9 @@ interface IPostCard {
 
 export default function PostCard({ image, title, description }: IPostCard) {
   return (
-    <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+    <div className="max-w-sm rounded-lg shadow dark:bg-gray-800 border-gray-700">
       <a href="#">
-        <img className="rounded-t-lg" src={image} alt="" />
+        <img className="rounded-t-lg" src={image} alt="Post image" />
       </a>
       <div className="p-5">
         <a href="#">

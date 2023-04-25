@@ -66,6 +66,28 @@ export const getOne = async (req, res) => {
   }
 };
 
+export const getMyPosts = async (req, res) => {
+  try {
+    PostModel.find({
+      user: req.userId,
+    }).then((doc) => {
+      if (!doc) {
+        return res.status(404).json({
+          message: "post not found",
+        });
+      }
+
+      res.json(doc);
+    });
+  } catch (err) {
+    console.log(err);
+
+    res.status(500).json({
+      message: "unable get posts",
+    });
+  }
+};
+
 export const remove = (req, res) => {
   try {
     const postId = req.params.id;
@@ -92,7 +114,7 @@ export const update = async (req, res) => {
   try {
     const postId = req.params.id;
 
-    await PostModel.updateOne(
+    await PostModel.fi(
       {
         _id: postId,
       },

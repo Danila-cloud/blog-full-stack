@@ -7,6 +7,12 @@ export const fetchPosts = createAsyncThunk("posts/fetchPosts", async () => {
   return data;
 });
 
+export const fetchMyPosts = createAsyncThunk("posts/fetchMyPosts", async (params: any) => {
+  const { data } = await instance.get("/my-posts", params);
+
+  return data;
+});
+
 const initialState = {
   posts: {
     items: [],
@@ -35,6 +41,21 @@ const postsSlice = createSlice({
     },
     // @ts-ignore
     [fetchPosts.rejected]: (state: any) => {
+      state.posts.items = [];
+      state.posts.status = "error";
+    },
+    // @ts-ignore
+    [fetchMyPosts.pending]: (state: any) => {
+      state.posts.items = [];
+      state.posts.status = "loading";
+    },
+    // @ts-ignore
+    [fetchMyPosts.fulfilled]: (state: any, action: any) => {
+      state.posts.items = action.payload;
+      state.posts.status = "loaded";
+    },
+    // @ts-ignore
+    [fetchMyPosts.rejected]: (state: any) => {
       state.posts.items = [];
       state.posts.status = "error";
     },

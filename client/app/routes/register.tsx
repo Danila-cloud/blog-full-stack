@@ -1,11 +1,10 @@
 import type { V2_MetaFunction } from "@remix-run/react";
 import { EmptyAvatar } from "~/assets";
 import { useNavigate } from "@remix-run/react";
-import { Logo } from "~/assets";
 import { useForm } from "react-hook-form";
-import { useDispatch, useSelector } from "react-redux";
-import { ThunkDispatch } from "@reduxjs/toolkit";
-import { fetchAuth, fetchRegister, selectIsAuth } from "~/redux/slices/auth";
+import { useDispatch } from "react-redux";
+import type { ThunkDispatch } from "@reduxjs/toolkit";
+import { fetchRegister } from "~/redux/slices/user";
 
 export const meta: V2_MetaFunction = () => {
   return [{ title: "Register | Blog.sol" }];
@@ -38,6 +37,9 @@ export default function Register() {
     }
 
     window.localStorage.setItem("token", data.payload.token);
+    window.localStorage.setItem("email", data.payload._doc.email);
+    window.localStorage.setItem("name", data.payload._doc.fullName);
+    window.localStorage.setItem("id", data.payload._doc._id);
 
     return data;
   };

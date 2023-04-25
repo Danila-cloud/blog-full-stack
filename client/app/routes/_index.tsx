@@ -1,13 +1,12 @@
 import type { V2_MetaFunction } from "@remix-run/react";
 import { useEffect, useState } from "react";
-import { EmptyImage } from "~/assets";
+import { EmptyPostImage } from "~/assets";
 import { useDispatch, useSelector } from "react-redux";
 import PostCard from "~/components/post-card";
-import instance from "~/axios";
 import { fetchPosts } from "~/redux/slices/posts";
-import { ThunkDispatch } from "@reduxjs/toolkit";
+import type { ThunkDispatch } from "@reduxjs/toolkit";
 import Loading from "~/components/loading";
-import { selectIsAuth } from "~/redux/slices/auth";
+import { selectIsAuth } from "~/redux/slices/user";
 import toast, { Toaster } from "react-hot-toast";
 
 export const meta: V2_MetaFunction = () => {
@@ -37,7 +36,7 @@ export default function Index() {
   });
 
   return (
-    <div className="max-w-[720px] flex flex-row mx-auto mt-[56px] py-12 py-auto">
+    <div className="max-w-[720px] flex flex-col mx-auto mt-[56px] py-12">
       <div className="grid grid-cols-2 gap-2 mx-auto">
         {isPostsLoading ? (
           <div className="w-full h-screen">
@@ -47,6 +46,7 @@ export default function Index() {
           // @ts-ignore
           posts.items.map((obj) => (
             <PostCard
+              image={EmptyPostImage}
               key={obj.title}
               title={obj.title}
               description={obj.text}

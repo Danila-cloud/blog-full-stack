@@ -8,8 +8,21 @@ import {
 import checkAuth from "./utils/checkAuth.js";
 import multer from "multer";
 
-import { register, login, getMyProfile } from "./controllers/UserController.js";
-import { create, getAll, getOne, remove, update } from "./controllers/PostController.js";
+import {
+  register,
+  login,
+  getMyProfile,
+  changeEmail,
+  changeName,
+} from "./controllers/UserController.js";
+import {
+  create,
+  getAll,
+  getOne,
+  remove,
+  update,
+  getMyPosts,
+} from "./controllers/PostController.js";
 
 import handleErrors from "./utils/handleErrors.js";
 
@@ -25,7 +38,7 @@ mongoose
 const app = express();
 
 app.use(express.json());
-app.use(cors())
+app.use(cors());
 
 app.use("/uploads", express.static("uploads"));
 
@@ -56,12 +69,18 @@ app.get("/my-profile", checkAuth, getMyProfile);
 app.post("/login", handleErrors, login);
 app.post("/register", registerValidation, handleErrors, register);
 
+//***********************User */
+app.patch("/change-email/:id", checkAuth, changeEmail);
+app.patch("/change-name/:id", checkAuth, changeName);
+
 //*********************** Post */
 app.get("/posts/:id", getOne);
 app.get("/posts", getAll);
 app.post("/posts", checkAuth, postCreateValidation, create);
 app.delete("/posts/:id", checkAuth, remove);
 app.patch("/posts/:id", checkAuth, postCreateValidation, update);
+
+app.get("/my-posts", checkAuth, getMyPosts);
 
 app.listen(3001, (err) => {
   if (err) return console.log(err);

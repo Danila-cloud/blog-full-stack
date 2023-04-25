@@ -1,4 +1,4 @@
-import { LinksFunction, LoaderFunction } from "@remix-run/node";
+import type { LinksFunction } from "@remix-run/node";
 import {
   Links,
   LiveReload,
@@ -6,21 +6,22 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
-  useLoaderData,
 } from "@remix-run/react";
 
 import Navigation from "./components/navigation";
 
 import stylesheet from "~/tailwind.css";
 import Footer from "./components/footer";
-import { Provider, useDispatch, useSelector } from "react-redux";
+import { Provider, useDispatch } from "react-redux";
 import store from "./redux/store";
-import { ThunkDispatch } from "@reduxjs/toolkit";
-import { fetchLogin, selectIsAuth } from "./redux/slices/auth";
-import { ReactNode, useEffect } from "react";
+import type { ThunkDispatch } from "@reduxjs/toolkit";
+import { fetchLogin } from "./redux/slices/user";
+import type { ReactNode } from "react";
+import { useEffect } from "react";
 
 export const links: LinksFunction = () => {
   return [
+    // { rel: "stylesheet", href: CSS },
     { rel: "stylesheet", href: stylesheet },
     {
       rel: "manifest",
@@ -68,7 +69,6 @@ export const links: LinksFunction = () => {
 
 export function OutletProvider() {
   const dispatch = useDispatch<ThunkDispatch<any, any, any>>();
-  const isAuth = useSelector(selectIsAuth);
 
   useEffect(() => {
     dispatch(fetchLogin());
