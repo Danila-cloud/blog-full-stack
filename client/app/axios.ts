@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const instance = axios.create({
-  baseURL: "https://blog-be-jade.vercel.app/",
+  baseURL: "https://blog-be-jade.vercel.app",
 });
 
 // @ts-ignore
