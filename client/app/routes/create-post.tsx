@@ -1,6 +1,5 @@
-import { ThunkDispatch } from "@reduxjs/toolkit";
-import { V2_MetaFunction } from "@remix-run/node";
-import { useNavigate } from "@remix-run/react";
+import type { ThunkDispatch } from "@reduxjs/toolkit";
+import type { V2_MetaFunction } from "@remix-run/node";
 import { Button, FileInput, Label, Textarea } from "flowbite-react";
 import { useRef, useState } from "react";
 import { useForm } from "react-hook-form";
@@ -15,8 +14,6 @@ export const meta: V2_MetaFunction = () => {
 
 export default function CreatePost() {
   const dispatch = useDispatch<ThunkDispatch<any, any, any>>();
-
-  const navigate = useNavigate();
 
   const [imageUrl, setImageUrl] = useState("");
 
@@ -52,7 +49,7 @@ export default function CreatePost() {
       imageUrl,
     };
 
-    const data = await dispatch(createPost(params));
+    await dispatch(createPost(params));
 
     toast.success("You post is created!");
   };

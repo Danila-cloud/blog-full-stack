@@ -1,12 +1,9 @@
-import { V2_MetaFunction, useParams } from "@remix-run/react";
-import { useNavigate } from "@remix-run/react";
-import { EmptyPostImage, Logo, Views } from "~/assets";
-import toast, { Toaster } from "react-hot-toast";
+import type { V2_MetaFunction } from "@remix-run/react";
+import { useParams } from "@remix-run/react";
 import { useEffect, useState } from "react";
-import instance from "~/axios";
 import Loading from "~/components/loading";
 import { useDispatch, useSelector } from "react-redux";
-import { ThunkDispatch } from "@reduxjs/toolkit";
+import type { ThunkDispatch } from "@reduxjs/toolkit";
 import { fetchPost } from "~/redux/slices/posts";
 import FullPost from "~/components/full-post";
 
@@ -22,13 +19,7 @@ export default function Post() {
   // @ts-ignore
   const { posts } = useSelector((state) => state.posts);
 
-  // const [data, setData] = useState(null);
-  const [isLoading, setLoading] = useState(true);
   const [isPostsLoading, setIsPostLoading] = useState(true);
-
-  console.log(params.postId);
-
-  let data;
 
   useEffect(() => {
     dispatch(fetchPost(params.postId));
@@ -36,8 +27,6 @@ export default function Post() {
 
   useEffect(() => {
     if (posts.status === "loaded") setIsPostLoading(false);
-
-    console.log(posts.items);
   });
 
   return (
@@ -54,7 +43,6 @@ export default function Post() {
           viewsCount={posts.items.viewsCount}
         />
       )}
-      <Toaster />
     </div>
   );
 }
