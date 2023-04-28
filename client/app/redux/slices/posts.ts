@@ -7,11 +7,23 @@ export const fetchPosts = createAsyncThunk("posts/fetchPosts", async () => {
   return data;
 });
 
-export const fetchMyPosts = createAsyncThunk("posts/fetchMyPosts", async (params: any) => {
-  const { data } = await instance.get("/my-posts", params);
+export const fetchMyPosts = createAsyncThunk(
+  "posts/fetchMyPosts",
+  async (params: any) => {
+    const { data } = await instance.get("/my-posts", params);
 
-  return data;
-});
+    return data;
+  }
+);
+
+export const createPost = createAsyncThunk(
+  "posts/create",
+  async (params: any) => {
+    const { data } = await instance.post("/posts", params);
+
+    return data;
+  }
+);
 
 const initialState = {
   posts: {

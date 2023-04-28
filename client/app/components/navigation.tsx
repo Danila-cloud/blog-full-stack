@@ -26,7 +26,7 @@ export default function Navigation() {
       </Link>
       {isAuth ? (
         <div className="flex flex-row gap-4 my-auto ml-auto mr-24 relative right">
-          <Button variant="contained" href="#">
+          <Button variant="contained" href="/create-post">
             Create a new post
           </Button>
 
