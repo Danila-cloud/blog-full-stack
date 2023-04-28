@@ -40,8 +40,8 @@ export default function Index() {
 
   return (
     <div className="max-w-[720px] gap-8 flex flex-col mx-auto mt-[56px] py-12">
-      <h2 className="text-4xl mx-auto font-extrabold leading-none tracking-tight md:text-5xl lg:text-5xl text-sky-800">
-        Your posts
+      <h2 className="text-center text-3xl font-bold leading-9 tracking-tight text-sky-800">
+        My posts
       </h2>
 
       <div className="mx-auto">
@@ -59,6 +59,7 @@ export default function Index() {
                   key={obj.title}
                   title={obj.title}
                   description={obj.text}
+                  postId={obj._id}
                 />
               ))
             )}

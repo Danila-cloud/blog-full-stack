@@ -45,12 +45,15 @@ export default function Index() {
         ) : (
           // @ts-ignore
           posts.items.map((obj) => (
-            <PostCard
-              image={EmptyPostImage}
-              key={obj.title}
-              title={obj.title}
-              description={obj.text}
-            />
+            <div className="mx-auto">
+              <PostCard
+                image={EmptyPostImage}
+                key={obj.title}
+                title={obj.title}
+                description={obj.text}
+                postId={obj._id}
+              />
+            </div>
           ))
         )}
       </div>
